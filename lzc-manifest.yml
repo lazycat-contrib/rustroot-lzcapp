@@ -1,0 +1,41 @@
+application:
+  subdomain: rustroot
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://rustroot:8080/
+
+services:
+  rustroot:
+    # 源码构建应用：上游是 Astro 静态站点（zh/en 双构建），nginx 托管
+    # 上游: https://github.com/jimichenx/rustroot
+    # 许可：正文 CC BY-NC-ND 4.0（非商业署名转载，未改动），examples/ MIT
+    image: embed:rustroot
+    environment:
+      - TZ=Asia/Shanghai
+    binds:
+      - /lzcapp/var/data:/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -q --spider http://127.0.0.1:8080/ || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+usage: |
+  RustRoot 是一份面向有编程经验者的 Rust 开源指南（静态离线站点）：
+  不堆砌零散的语法词典，带你跨越过往语言的习惯，从内存与类型出发建立
+  自洽的 Rust 心智模型，贯通核心机制与工程实践。
+
+  【使用】
+  - 打开应用即可阅读，默认简体中文；右上角或 /en/ 路径切换英文版。
+  - 全部内容离线内置，不依赖外网（语言切换链接指向上游官网 rustroot.dev / rustroot.cn）。
+
+  【说明】
+  - 内容许可：正文 CC BY-NC-ND 4.0（署名-非商业-禁止演绎），示例代码 MIT。
+    上游：https://github.com/jimichenx/rustroot（作者 jimichen）
+  - 本应用为上游源码的未修改静态构建，跟随上游仓库更新自动重新构建发布。

@@ -1,0 +1,20 @@
+package: community.lazycat.app.rustroot
+version: 1.0.0
+name: RustRoot
+description: "RustRoot: 面向有经验开发者的 Rust 开源指南。跨越 OOP 与 GC 语言的思维惯性，从内存模型、类型设计到生产工程建立 Rust 原生思维。中英双语离线站点。"
+min_os_version: 1.5.0
+homepage: https://github.com/jimichenx/rustroot
+author: jimichenx
+license: CC-BY-NC-ND-4.0
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: RustRoot
+    description: "面向有经验开发者的 Rust 开源指南：跨越 OOP 与 GC 语言的思维惯性，从内存模型、类型设计到生产工程建立 Rust 原生思维。中英双语离线站点。"
+  zh_CN:
+    name: RustRoot
+  en:
+    name: RustRoot
+    description: "An open guide to Rust for experienced developers — unlearn OOP/GC habits, think in ownership and types, and write idiomatic production Rust. Offline bilingual site."

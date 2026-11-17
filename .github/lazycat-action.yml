@@ -1,0 +1,27 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/rustroot.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  version_source:
+    type: git
+
+build:
+  toolchains:
+    - kind: docker
+  run_buildscript: false
+
+stores:
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: RustRoot
+    summary: "RustRoot 懒猫微服打包：面向有经验开发者的 Rust 开源指南，中英双语离线静态站点（正文 CC BY-NC-ND 4.0 / 示例 MIT）。"
+  official:
+    enabled: false
